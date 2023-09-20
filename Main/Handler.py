@@ -1,5 +1,10 @@
-from Display import Display
-from Enum_Variable import Enum_Variable
+"""
+This class is an intermediate layer between main and the rest of the code and handles all the interactions between the classes.
+"""
+
+
+from Display.Display import Display
+from Utilities.Enum_Variable import Enum_Variable
 
 
 class Handler:
@@ -18,4 +23,4 @@ class Handler:
         pass
 
     def draw(self):
-        self.display.display()
+        self.display.display(self.interaction_type.return_state(), str(self.interaction_step))

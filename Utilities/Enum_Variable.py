@@ -1,5 +1,6 @@
 """
 This class is just a simple enumerator variable. I wanted to make it cuz I thought it would be cool.
+You can give it a list of possible states, then set a state and return which state it currently holds.
 """
 
 

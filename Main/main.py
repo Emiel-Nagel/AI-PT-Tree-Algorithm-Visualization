@@ -1,7 +1,14 @@
+"""
+This is the main class from which the program runs.
+The code is basically that you can close the program cleanly when you click on the cross button at the top-right corner of the pygame window.
+"""
+
+
 import pygame
 
 from Handler import Handler
 
+caption = "Graph Algorithm Visualizer"
 window_width = 1000
 window_height = 1000
 
@@ -9,7 +16,7 @@ window_height = 1000
 class Main:
     def __init__(self):
         pygame.init()
-        pygame.display.set_caption("Graph Algorithm Visualizer")
+        pygame.display.set_caption(caption)
 
         self.runBool = True
 
