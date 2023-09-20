@@ -4,12 +4,16 @@ This class is an intermediate layer between main and the rest of the code and ha
 
 
 from Interaction.Display import Display
+from Interaction.Keyboard import Keyboard
 from Utilities.Enum_Variable import Enum_Variable
 
 
 class Handler:
     def __init__(self, window_width, window_height):
         self.display = Display(window_width, window_height)
+        self.keyboard = Keyboard()
+
+        self.reset = False
 
         self.interaction_type = Enum_Variable(["Instant", "Step-by-Step", "Auto-run"])
         self.interaction_type.set_state("Step-by-Step")
@@ -20,13 +24,27 @@ class Handler:
         """
         This method will call to create a new graph
         """
-        pass
+        if self.reset:
+            pass
+        self.reset = False
 
     def interact(self):
         """
         This method will handle all the interaction that happens between the user and the computer
         """
-        pass
+        self.check_key_pressed()
+
+    def check_key_pressed(self):
+        """
+        This method handles the interaction with the keyboard
+        Space   = 44  Backspace = 42    Enter = 40
+        """
+        if 44 in self.keyboard.return_key():
+            self.interaction_step += 1
+        if 42 in self.keyboard.return_key():
+            self.interaction_step -= 1
+        if 40 in self.keyboard.return_key():
+            self.reset = True
 
     def draw(self):
         """
