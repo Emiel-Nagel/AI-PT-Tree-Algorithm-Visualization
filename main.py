@@ -1,5 +1,7 @@
 import pygame
 
+from Handler import Handler
+
 windowWidth = 1000
 windowHeight = 1000
 
@@ -9,26 +11,25 @@ class Main:
         self.runBool = True
         pygame.init()
 
+        self.handler = Handler()
+
     def run(self):
         """
         Main update loop, gets run every frame
         """
-
         while self.runBool:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.runBool = False
-                    sys.exit()
+            self.call()
 
-            # timing functions for constant fps
-            self.elapsed_time = time.perf_counter() - self.previous_time
-            if self.elapsed_time > 1 / self.frameRate:
-                self.previous_time = time.perf_counter()
-                # draw loop
-                self.draw()
-                self.frameCount += 1
-
-
+    def call(self):
+        """
+        Method that calls the methods from other classes and handles the interaction
+        """
+        self.handler.create_graph()
+        self.handler.interact()
+        self.handler.draw()
 
 
 # Starts and runs the game
