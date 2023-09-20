@@ -24,7 +24,7 @@ class Main:
 
     def run(self):
         """
-        Main update loop, gets run every frame
+        Main update loop, quits if the pygame window is closed
         """
         while self.runBool:
             for event in pygame.event.get():
