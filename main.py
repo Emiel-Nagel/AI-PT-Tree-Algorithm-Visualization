@@ -2,16 +2,18 @@ import pygame
 
 from Handler import Handler
 
-windowWidth = 1000
-windowHeight = 1000
+window_width = 1000
+window_height = 1000
 
 
 class Main:
     def __init__(self):
-        self.runBool = True
         pygame.init()
+        pygame.display.set_caption("Graph Algorithm Visualizer")
 
-        self.handler = Handler()
+        self.runBool = True
+
+        self.handler = Handler(window_width, window_height)
 
     def run(self):
         """

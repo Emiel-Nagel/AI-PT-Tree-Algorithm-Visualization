@@ -1,8 +1,11 @@
 import time
+import pygame
 
 
 class Display:
-    def __init__(self):
+    def __init__(self, window_width, window_height):
+        self.screen = pygame.display.set_mode((window_width, window_height))
+
         # variables for 60fps loop
         self.frame_rate = 60
         self.previous_time = time.perf_counter()
