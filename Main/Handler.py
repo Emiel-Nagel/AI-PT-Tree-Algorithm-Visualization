@@ -18,7 +18,11 @@ class Handler:
         self.interaction_type = Enum_Variable(["Instant", "Step-by-Step", "Auto-run"])
         self.interaction_type.set_state("Step-by-Step")
 
-        self.interaction_step = 1  # Useful for when you want to show step by step how the algorithm works, probably needs to be used in the self.interact class
+        self.interaction_step = 0  # Useful for when you want to show step by step how the algorithm works, probably needs to be used in the self.interact class
+
+        # for startup
+        self.display.reset_screen()
+        self.display.draw_text([self.interaction_type.return_state(), str(self.interaction_step)])
 
     def create_graph(self):
         """
@@ -41,8 +45,10 @@ class Handler:
         """
         if 44 in self.keyboard.return_key():
             self.interaction_step += 1
+            self.display.draw_text([self.interaction_type.return_state(), str(self.interaction_step)])
         if 42 in self.keyboard.return_key():
             self.interaction_step -= 1
+            self.display.draw_text([self.interaction_type.return_state(), str(self.interaction_step)])
         if 40 in self.keyboard.return_key():
             self.reset = True
 
@@ -50,4 +56,5 @@ class Handler:
         """
         This method will call to display the program in a window
         """
-        self.display.display(self.interaction_type.return_state(), str(self.interaction_step))
+        #self.display.display(self.interaction_type.return_state(), str(self.interaction_step))
+
