@@ -42,7 +42,8 @@ class Display:
         self.background = (40, 20, 30)
 
         # graph variables
-        self.node_size = 2
+        self.node_size = 10
+        self.node_base_size = 10
 
     def display(self, interaction_type, interaction_step):
         """
@@ -71,16 +72,20 @@ class Display:
         """
         update_rect = []
         for node in graph:
-            node_radius = node.return_value() * self.node_size
-            print(node_radius)
-            pygame.draw.circle(self.screen, node.return_color(), node.return_coordinate(), node_radius, 0)
+            node_radius = abs(node.return_value() * self.node_size) + self.node_base_size
+            print("Radius: " + str(node_radius))
+            print("Location: " + str(node.return_coordinate()))
+            coordinate_x = node.return_coordinate()[0]
+            coordinate_y = node.return_coordinate()[1]
+            pygame.draw.circle(self.screen, node.return_color(), (coordinate_x, coordinate_y), node_radius, 0)
             text = str(node.return_value())
-            print(text)
+            print("Value: " + text)
             text_display = self.font.render(text, True, self.white)
             text_rect = text_display.get_rect()
             text_rect.center = (node.return_coordinate())
             self.screen.blit(text_display, text_rect)
-            node_rect = pygame.Rect(node.return_coordinate(), (node_radius, node_radius))
+            node_rect = pygame.Rect((coordinate_x - node_radius, coordinate_y - node_radius), (node_radius * 2, node_radius * 2))
+            print(node_rect)
             update_rect.append(node_rect)
         pygame.display.update(update_rect)
 
